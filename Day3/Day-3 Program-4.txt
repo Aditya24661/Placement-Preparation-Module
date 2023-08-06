@@ -1,0 +1,23 @@
+import java.util.*;
+public class Main {
+    public static int majority_element(int []v) {
+        int n = v.length;
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++) {                
+                if (v[j] == v[i]) {
+                    count++;
+                }
+            }
+            if (count > (n / 3))
+                return v[i];
+        }
+        return -1;
+    }
+    public static void main(String args[]) {
+        int[] arr = {11, 33, 33, 11, 33, 11};
+        int ans = majority_element(arr);
+        System.out.println("The majority element is: " + ans);
+    }
+} 
+

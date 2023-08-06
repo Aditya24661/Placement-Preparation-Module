@@ -1,0 +1,51 @@
+import java.util.*;
+public class Main {
+    public static void merge(int[] a1, int[] a2, int n, int m) {
+        int[] a3 = new int[n + m];
+        int left = 0;
+        int right = 0;
+        int index = 0;
+        while (left < n && right < m) {
+            if (a1[left] <= a2[right]) {
+                a3[index] = a1[left];
+                left++;
+                index++;
+            } else {
+                a3[index] = a2[right];
+                right++;
+                index++;
+            }
+        }
+        while (left < n) {
+            a3[index++] = a1[left++];
+        }
+        while (right < m) {
+            a3[index++] = a2[right++];
+        }
+        for (int i = 0; i < n + m; i++) {
+            if (i < n) {
+                a1[i] = a3[i];
+            } else {
+                a2[i - n] = a3[i];
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] a1 = {1, 4, 8, 10};
+        int[] a2 = {2, 3, 9};
+        int n = 4, m = 3;
+        merge(a1, a2, n, m);
+        System.out.println("The merged aays are:");
+        System.out.print("a1[] = ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a1[i] + " ");
+        }
+        System.out.print("\na2[] = ");
+        for (int i = 0; i < m; i++) {
+            System.out.print(a2[i] + " ");
+        }
+        System.out.println();
+    }
+
+}
